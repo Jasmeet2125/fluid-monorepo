@@ -3,27 +3,59 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
-    "client": {
-      "root": "apps/client/",
-      "sourceRoot": "apps/client/src",
+    "fluid": {
+      "root": "libs/fluid",
+      "sourceRoot": "libs/fluid/src",
+      "projectType": "library",
+      "prefix": "libs/fluid-monorepo",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/fluid/src/test.ts",
+            "tsConfig": "libs/fluid/tsconfig.spec.json",
+            "karmaConfig": "libs/fluid/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/fluid/tsconfig.lib.json",
+              "libs/fluid/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "fluid-demo": {
+      "root": "apps/fluid-demo/",
+      "sourceRoot": "apps/fluid-demo/src",
       "projectType": "application",
       "prefix": "fluid-monorepo",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/client",
-            "index": "apps/client/src/index.html",
-            "main": "apps/client/src/main.ts",
-            "polyfills": "apps/client/src/polyfills.ts",
-            "tsConfig": "apps/client/tsconfig.app.json",
+            "outputPath": "dist/apps/fluid-demo",
+            "index": "apps/fluid-demo/src/index.html",
+            "main": "apps/fluid-demo/src/main.ts",
+            "polyfills": "apps/fluid-demo/src/polyfills.ts",
+            "tsConfig": "apps/fluid-demo/tsconfig.app.json",
             "assets": [
-              "apps/client/src/favicon.ico",
-              "apps/client/src/assets"
+              "apps/fluid-demo/src/favicon.ico",
+              "apps/fluid-demo/src/assets"
             ],
             "styles": [
-              "apps/client/src/styles.css"
+              "apps/fluid-demo/src/styles.scss"
             ],
             "scripts": []
           },
@@ -31,8 +63,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/client/src/environments/environment.ts",
-                  "with": "apps/client/src/environments/environment.prod.ts"
+                  "replace": "apps/fluid-demo/src/environments/environment.ts",
+                  "with": "apps/fluid-demo/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -50,34 +82,34 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "client:build"
+            "browserTarget": "fluid-demo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "client:build:production"
+              "browserTarget": "fluid-demo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "client:build"
+            "browserTarget": "fluid-demo:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "apps/client/src/test.ts",
-            "polyfills": "apps/client/src/polyfills.ts",
-            "tsConfig": "apps/client/tsconfig.spec.json",
-            "karmaConfig": "apps/client/karma.conf.js",
+            "main": "apps/fluid-demo/src/test.ts",
+            "polyfills": "apps/fluid-demo/src/polyfills.ts",
+            "tsConfig": "apps/fluid-demo/tsconfig.spec.json",
+            "karmaConfig": "apps/fluid-demo/karma.conf.js",
             "styles": [
-              "apps/client/src/styles.css"
+              "apps/fluid-demo/src/styles.scss"
             ],
             "scripts": [],
             "assets": [
-              "apps/client/src/favicon.ico",
-              "apps/client/src/assets"
+              "apps/fluid-demo/src/favicon.ico",
+              "apps/fluid-demo/src/assets"
             ]
           }
         },
@@ -85,8 +117,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/client/tsconfig.app.json",
-              "apps/client/tsconfig.spec.json"
+              "apps/fluid-demo/tsconfig.app.json",
+              "apps/fluid-demo/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -95,54 +127,26 @@
         }
       }
     },
-    "client-e2e": {
-      "root": "apps/client-e2e/",
+    "fluid-demo-e2e": {
+      "root": "apps/fluid-demo-e2e/",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "apps/client-e2e/protractor.conf.js",
-            "devServerTarget": "client:serve"
+            "protractorConfig": "apps/fluid-demo-e2e/protractor.conf.js",
+            "devServerTarget": "fluid-demo:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "client:serve:production"
+              "devServerTarget": "fluid-demo:serve:production"
             }
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "apps/client-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "clientui": {
-      "root": "libs/clientui",
-      "sourceRoot": "libs/clientui/src",
-      "projectType": "library",
-      "prefix": "fluid-monorepo",
-      "architect": {
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "libs/clientui/src/test.ts",
-            "tsConfig": "libs/clientui/tsconfig.spec.json",
-            "karmaConfig": "libs/clientui/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/clientui/tsconfig.lib.json",
-              "libs/clientui/tsconfig.spec.json"
-            ],
+            "tsConfig": "apps/fluid-demo-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]

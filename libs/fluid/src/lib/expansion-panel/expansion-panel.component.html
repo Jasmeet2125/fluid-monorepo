@@ -1,0 +1,11 @@
+<div class="fluid-expansion-panel">
+  <div class="header" (click)="show = !show">
+    <ng-content select="[header]"></ng-content>
+  </div>
+  <div class="content" [ngClass]="{'visible': show}">
+    <ng-content select="[content]"></ng-content>
+  </div>
+  <div class="footer" [ngClass]="{'visible': show}">
+    <ng-content select="[content]"></ng-content>
+  </div>
+</div>

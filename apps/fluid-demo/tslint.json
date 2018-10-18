@@ -1,0 +1,17 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "fluid-monorepo",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "fluid-monorepo",
+      "kebab-case"
+    ]
+  }
+}

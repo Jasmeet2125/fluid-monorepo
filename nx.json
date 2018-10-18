@@ -8,13 +8,13 @@
     "nx.json": "*"
   },
   "projects": {
-    "client": {
+    "fluid": {
       "tags": []
     },
-    "client-e2e": {
+    "fluid-demo": {
       "tags": []
     },
-    "clientui": {
+    "fluid-demo-e2e": {
       "tags": []
     }
   }

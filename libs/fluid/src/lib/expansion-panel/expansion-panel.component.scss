@@ -1,0 +1,23 @@
+.fluid-expansion-panel {
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  .header {
+    height: 48px;
+    display: flex;
+    padding: 0px 24px;
+    align-items: center;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    height: 0px;
+    visibility: hidden;
+  }
+
+  .visible {
+    height: auto;
+    padding: 0px 24px 15px 24px;
+    visibility: visible;
+  }
+}

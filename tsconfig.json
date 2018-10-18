@@ -16,8 +16,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@fluid-monorepo/clientui": [
-        "libs/clientui/src/index.ts"
+      "@fluid-monorepo/fluid": [
+        "libs/fluid/src/index.ts"
       ]
     }
   },
